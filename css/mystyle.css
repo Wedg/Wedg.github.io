@@ -214,7 +214,7 @@ a:hover{
 
 @media screen and (min-width: 64em){
   .page-header{
-    padding: 2.5rem 4rem; /*5rem 6rem*/
+    padding: 2.0rem 4rem; /*5rem 6rem*/
   }
 }
 
@@ -233,7 +233,7 @@ a:hover{
 /* class - project-name */
 .project-name{
   margin-top: 0;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.0rem; /*0.1rem*/
 }
 
 @media screen and (min-width: 64em){
