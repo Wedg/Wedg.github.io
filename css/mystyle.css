@@ -263,7 +263,7 @@ a:hover{
 
 @media screen and (min-width: 64em){
   .project-tagline{
-    font-size: 1.75rem; /*1.25*/
+    font-size: 1.25rem; /*1.25*/
   }
 }
 
