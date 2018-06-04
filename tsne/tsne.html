@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59769035-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59769035-3');
+</script>
+
+<meta charset="utf-8" />
 <title>t-SNE Detail</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -8451,15 +8463,15 @@ label {
 }
 /* Flexible box model classes */
 /* Taken from Alex Russell http://infrequently.org/2009/08/css-3-progress/ */
-/* This file is a compatability layer.  It allows the usage of flexible box 
+/* This file is a compatability layer.  It allows the usage of flexible box
 model layouts accross multiple browsers, including older browsers.  The newest,
 universal implementation of the flexible box model is used when available (see
-`Modern browsers` comments below).  Browsers that are known to implement this 
+`Modern browsers` comments below).  Browsers that are known to implement this
 new spec completely include:
 
     Firefox 28.0+
     Chrome 29.0+
-    Internet Explorer 11+ 
+    Internet Explorer 11+
     Opera 17.0+
 
 Browsers not listed, including Safari, are supported via the styling under the
@@ -11233,7 +11245,7 @@ div#pager .ui-resizable-handle {
   background: #f7f7f7;
   border-top: 1px solid #cfcfcf;
   border-bottom: 1px solid #cfcfcf;
-  /* This injects handle bars (a short, wide = symbol) for 
+  /* This injects handle bars (a short, wide = symbol) for
         the resize handle. */
 }
 div#pager .ui-resizable-handle::after {
@@ -11676,7 +11688,7 @@ ul.typeahead-list > li > a {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
-    
+
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
 .ansi-black-fg { color: #3E424D; }
 .ansi-black-bg { background-color: #3E424D; }
@@ -11730,14 +11742,14 @@ div#notebook {
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
@@ -11859,23 +11871,23 @@ $$</p>
     <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs2</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>                <span class="c"># sᵢ = ||xᵢ||²</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">BLAS</span><span class="o">.</span><span class="n">syrk</span><span class="p">(</span><span class="sc">&#39;L&#39;</span><span class="p">,</span> <span class="sc">&#39;T&#39;</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">X</span><span class="p">)</span>  <span class="c"># Computes lower triangle of D = - 2 .* (X&#39; * X)</span>
-    
+
     <span class="c"># Complete the full distance matrix: D = - 2 .* (X&#39; * X) .+ s .+ s&#39;</span>
     <span class="k">for</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        
+
         <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c"># Upper triangle - copy from lower triangle (matrix is symmetric)</span>
             <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
         <span class="k">end</span>
-        
+
         <span class="c"># Diagonal - often 0, but can use for tricks e.g. set to -Inf to underflow to 0 under exp or inv</span>
         <span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">diagval</span>
-        
+
         <span class="n">sj</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="n">n</span>  <span class="c"># Lower triangle</span>
             <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sj</span><span class="p">)</span>
         <span class="k">end</span>
     <span class="k">end</span>
-    
+
     <span class="k">return</span> <span class="n">D</span>
 <span class="k">end</span><span class="p">;</span>
 </pre></div>
@@ -11893,14 +11905,14 @@ $$</p>
 <p>The method used to find an appropriate $\sigma_j$ for each point $j$ is for the user to specify a perplexity. Perplexity is defined as</p>
 $$
 Perp(P_j) = 2^{H(P_j)}
-$$<p>where $H(P_i)$ is the Shannon entropy measure of $P_j$ measured in bits i.e. 
+$$<p>where $H(P_i)$ is the Shannon entropy measure of $P_j$ measured in bits i.e.
 $$
 H(P_j) = - \sum_j p_{i \mid j} \log_2 p_{i \mid j}
 $$</p>
 <p>A binary search is used to find the $\sigma_j$ that corresponds to the specified perplexity. This is done in the <code>conditional_p</code> function below.</p>
 <p>With $\beta_j \equiv \frac{1}{2 \sigma_j^2}$ and $D_{ij} = \|x_i - x_j\|^2$ as well as some pencil, paper and a little head scratching you can confirm that<br>
 $$
-H_j = - \sum<em>j p</em>{i \mid j} \log<em>2 p</em>{i \mid j} 
+H_j = - \sum<em>j p</em>{i \mid j} \log<em>2 p</em>{i \mid j}
     = \left( \frac{\beta_j \sum<em>i D</em>{ij} \, \exp(- \beta<em>j  \, D</em>{ij})}{\sum_{k \neq j} \exp(- \beta<em>j  \, D</em>{kj})}</p>
 
 <pre><code>  + \log \left( \textstyle \sum_{k \neq j} \exp(- \beta_j  \, D_{kj} \right) \right) \, \frac{1}{\log(2)}
@@ -11917,8 +11929,8 @@ H_j = - \sum<em>j p</em>{i \mid j} \log<em>2 p</em>{i \mid j}
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">entropy_and_conditional_p!</span><span class="p">(</span><span class="n">Pj</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">Dj</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> 
-                                    <span class="n">βj</span><span class="o">::</span><span class="n">F</span><span class="p">)</span> <span class="n">where</span> <span class="p">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span> 
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">entropy_and_conditional_p!</span><span class="p">(</span><span class="n">Pj</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">Dj</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">{</span><span class="n">F</span><span class="p">},</span>
+                                    <span class="n">βj</span><span class="o">::</span><span class="n">F</span><span class="p">)</span> <span class="n">where</span> <span class="p">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span>
     <span class="n">sumPj</span><span class="p">,</span> <span class="n">dotDjPj</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">F</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">Pj</span><span class="p">)</span>
         <span class="n">sumPj</span> <span class="o">+=</span> <span class="p">(</span><span class="n">Pj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">βj</span> <span class="o">*</span> <span class="n">Dj</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
@@ -11940,7 +11952,7 @@ H_j = - \sum<em>j p</em>{i \mid j} \log<em>2 p</em>{i \mid j}
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="2.1.3-Stability">2.1.3 Stability<a class="anchor-link" href="#2.1.3-Stability">&#194;&#182;</a></h3><p><code>reducemin!</code> is a helper function for reducing each vector by it's minimum. Because each element of $D$ and each $\beta$ are positive, $- \beta_j D_{ij}$ is negative, and the reducemin on a column of $D$ has the effect of moving the range of $- \beta_j D_{ij}$ to $(-\infty, 0)$.</p>
-<p>This is valid for use in the definition of $p_{i \mid j}$ since 
+<p>This is valid for use in the definition of $p_{i \mid j}$ since
 $$
 \dfrac{\exp(z_i)}{\sum_i \exp(z_i)} = \dfrac{\exp(z_i + c)}{\sum_i \exp(z_i + c)}.
 $$</p>
@@ -11981,38 +11993,38 @@ $$</p>
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">conditional_p</span><span class="p">(</span><span class="n">D</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">perplexity</span><span class="o">::</span><span class="n">F</span><span class="p">,</span> <span class="n">tol</span><span class="o">::</span><span class="n">F</span><span class="p">,</span> 
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">conditional_p</span><span class="p">(</span><span class="n">D</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">perplexity</span><span class="o">::</span><span class="n">F</span><span class="p">,</span> <span class="n">tol</span><span class="o">::</span><span class="n">F</span><span class="p">,</span>
                        <span class="n">max_iter</span><span class="o">::</span><span class="n">T</span><span class="p">)</span> <span class="n">where</span> <span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Integer</span><span class="p">,</span> <span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span>
-    
+
     <span class="c"># Number of observations - columns of X</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    
+
     <span class="c"># Initialise P matrix and β vector</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="n">β</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    
+
     <span class="c"># Initialise column vectors</span>
     <span class="n">Dj</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="n">Pj</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    
+
     <span class="c"># Binary search target</span>
     <span class="n">target</span> <span class="o">=</span> <span class="n">log2</span><span class="p">(</span><span class="n">perplexity</span><span class="p">)</span>
-    
+
     <span class="c"># Binary search over each column</span>
     <span class="k">for</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        
+
         <span class="c"># Re-initialise column vectors</span>
         <span class="n">fill!</span><span class="p">(</span><span class="n">Pj</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
         <span class="n">copy!</span><span class="p">(</span><span class="n">Dj</span><span class="p">,</span> <span class="n">view</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
-        
+
         <span class="c"># Subtract minimum value for better stability</span>
         <span class="n">reducemin!</span><span class="p">(</span><span class="n">Dj</span><span class="p">)</span>
-        
+
         <span class="c"># Initial binary search values</span>
         <span class="n">βj_min</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">βj_max</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="nb">Inf</span><span class="p">)</span>
         <span class="n">βj</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        
+
         <span class="c"># Binary search loop</span>
         <span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">max_iter</span>
 
@@ -12030,7 +12042,7 @@ $$</p>
                 <span class="n">βj_max</span> <span class="o">=</span> <span class="n">βj</span>
                 <span class="n">βj</span> <span class="o">=</span> <span class="p">(</span><span class="n">βj_min</span> <span class="o">+</span> <span class="n">βj_max</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
             <span class="k">end</span>
-            
+
             <span class="c"># Warn if max iterations reached</span>
             <span class="n">iter</span> <span class="o">==</span> <span class="n">max_iter</span> <span class="o">&amp;&amp;</span> <span class="n">warn</span><span class="p">(</span><span class="s">&quot;Max iterations reached for column </span><span class="si">$j</span><span class="s"> with perplexity = </span><span class="si">$</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">Hj</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
         <span class="k">end</span>
@@ -12039,7 +12051,7 @@ $$</p>
         <span class="n">P</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pj</span>
         <span class="n">β</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">βj</span>
     <span class="k">end</span>
-    
+
     <span class="c"># Return conditional probabilities</span>
     <span class="k">return</span> <span class="n">P</span>
 <span class="k">end</span><span class="p">;</span>
@@ -12126,7 +12138,7 @@ $$<p>.</p>
 $$
 q_{ij} = \frac{\left(1 + \|y_i - y_j\|^2 \right)^{-1}}
               {\sum_{k} \sum_{l \neq k} \left(1 + \| y_k - y_l \|^2 \right)^{-1}}
-$$<p>i.e. a Student t-distribution with one degree of freedom (same as a Cauchy distribution). The original SNE method used a Gaussian in the low dimension space. One nice property of this defintion is that $(1 + \|y_i - y_j\|^2 )^{-1}$ 
+$$<p>i.e. a Student t-distribution with one degree of freedom (same as a Cauchy distribution). The original SNE method used a Gaussian in the low dimension space. One nice property of this defintion is that $(1 + \|y_i - y_j\|^2 )^{-1}$
 approaches an inverse square law for large pairwise distances. This makes it robust to changes in scale. There is also the computational benefit that it is faster to evaluate than the Gaussian because it doesn't have the exponential function.</p>
 <p>For computation reasons (that should make sense when looking at the gradient function below) <code>joint_q!</code> doesn't return the full $Q$ matrix but instead returns the matrix of the numerators $(1 + \|y_i - y_j\|^2 )^{-1}$ - called <code>Qtop</code> - and separately the denominator $\sum_{k} \sum_{l \neq k} \left(1 + \| y_k - y_l \|^2 \right)^{-1}$ - called <code>sumQ</code> - which is identical for all $Q_{ij}$.</p>
 
@@ -12138,12 +12150,12 @@ approaches an inverse square law for large pairwise distances. This makes it rob
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">joint_q!</span><span class="p">(</span><span class="n">Qtop</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">s</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> 
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">joint_q!</span><span class="p">(</span><span class="n">Qtop</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">s</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span>
                   <span class="n">Y</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">})</span> <span class="n">where</span> <span class="p">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">Qtop</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">sum!</span><span class="p">(</span><span class="n">abs2</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>                            <span class="c"># sᵢ = ||Yᵢ||² (in-place)</span>
     <span class="n">BLAS</span><span class="o">.</span><span class="n">syrk!</span><span class="p">(</span><span class="sc">&#39;L&#39;</span><span class="p">,</span> <span class="sc">&#39;T&#39;</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">Qtop</span><span class="p">)</span>  <span class="c"># Lower triangle of Qtop = - 2 .* (Y&#39; * Y) (in-place)</span>
-    
+
     <span class="n">sumQ</span> <span class="o">=</span> <span class="n">zero</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
     <span class="nd">@inbounds</span> <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
         <span class="n">Qtop</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c"># Diagonal = 0</span>
@@ -12219,7 +12231,7 @@ $$
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">grad!</span><span class="p">(</span><span class="n">ΔY</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">Y</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">P</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> 
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">grad!</span><span class="p">(</span><span class="n">ΔY</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">Y</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">P</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span>
                <span class="n">Qtop</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">sumQ</span><span class="o">::</span><span class="n">F</span><span class="p">)</span>  <span class="n">where</span> <span class="p">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span>
     <span class="n">fill!</span><span class="p">(</span><span class="n">ΔY</span><span class="p">,</span> <span class="n">zero</span><span class="p">(</span><span class="n">F</span><span class="p">))</span>
     <span class="n">invsumQ</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">sumQ</span><span class="p">)</span>
@@ -12256,29 +12268,29 @@ $$
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">check_gradients</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-    
+
     <span class="c"># Number of observations</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    
+
     <span class="c"># Create P Matrix</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">create_P</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-    
+
     <span class="c"># Initialise Y matrix - sample from Normal(0, 1e-4)</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-4</span>
-    
+
     <span class="c"># Initialise re-use matrices</span>
     <span class="n">s</span><span class="p">,</span> <span class="n">Qtop</span><span class="p">,</span> <span class="n">ΔY</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">zeros</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    
+
     <span class="c"># Calculate gradients analytically</span>
     <span class="n">sumQ</span> <span class="o">=</span> <span class="n">joint_q!</span><span class="p">(</span><span class="n">Qtop</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
     <span class="n">grad!</span><span class="p">(</span><span class="n">ΔY</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Qtop</span><span class="p">,</span> <span class="n">sumQ</span><span class="p">)</span>
-    
+
     <span class="c"># Size of perturbation</span>
     <span class="n">ϵ</span> <span class="o">=</span> <span class="mf">1e-5</span>
-    
+
     <span class="c"># Initialise numeric gradient array</span>
     <span class="n">numeric_grad</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">ΔY</span><span class="p">)</span>
-    
+
     <span class="c"># Estimate gradient for each parameter separately</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 
@@ -12289,7 +12301,7 @@ $$
         <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">ϵ</span>
         <span class="n">sumQ</span> <span class="o">=</span> <span class="n">joint_q!</span><span class="p">(</span><span class="n">Qtop</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
         <span class="n">cost1</span> <span class="o">=</span> <span class="n">kl_div</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Qtop</span><span class="p">,</span> <span class="n">sumQ</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-        
+
         <span class="c"># Backward</span>
         <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">2</span><span class="n">ϵ</span>
         <span class="n">sumQ</span> <span class="o">=</span> <span class="n">joint_q!</span><span class="p">(</span><span class="n">Qtop</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
@@ -12301,7 +12313,7 @@ $$
         <span class="c"># Reset the parameter</span>
         <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
     <span class="k">end</span>
-    
+
     <span class="c"># Display results</span>
     <span class="c"># Display the difference between numeric and analytic gradient for each parameter</span>
     <span class="nd">@printf</span> <span class="s">&quot;\e[1m</span><span class="si">%s</span><span class="s">\e[0m&quot;</span> <span class="s">&quot; Numeric Gradient    Analytic Gradient           Difference</span><span class="se">\n</span><span class="s">&quot;</span>
@@ -12342,25 +12354,25 @@ $$
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre><span class="ansi-bold"> Numeric Gradient    Analytic Gradient           Difference
-</span>     6.635137e-07         6.634913e-07         2.234492e-11 
-     1.621903e-06         1.621881e-06         2.176541e-11 
-    -6.403322e-07        -6.403317e-07        -5.585587e-13 
-     1.884981e-06         1.885007e-06        -2.550963e-11 
-    -4.586109e-07        -4.585938e-07        -1.711631e-11 
-    -1.337108e-06        -1.337095e-06        -1.369592e-11 
-    -4.476242e-06        -4.476238e-06        -3.804300e-12 
-    -1.866507e-06        -1.866517e-06         1.020692e-11 
-     8.129497e-07         8.129543e-07        -4.570998e-12 
-     1.926770e-06         1.926796e-06        -2.595548e-11 
-     5.507594e-07         5.508231e-07        -6.367125e-11 
-     2.261480e-06         2.261496e-06        -1.638406e-11 
-    -1.871392e-07        -1.871356e-07        -3.609141e-12 
-    -1.960432e-06        -1.960405e-06        -2.672284e-11 
-    -3.105960e-07        -3.105795e-07        -1.644843e-11 
-              ...                  ...                  ... 
+</span>     6.635137e-07         6.634913e-07         2.234492e-11
+     1.621903e-06         1.621881e-06         2.176541e-11
+    -6.403322e-07        -6.403317e-07        -5.585587e-13
+     1.884981e-06         1.885007e-06        -2.550963e-11
+    -4.586109e-07        -4.585938e-07        -1.711631e-11
+    -1.337108e-06        -1.337095e-06        -1.369592e-11
+    -4.476242e-06        -4.476238e-06        -3.804300e-12
+    -1.866507e-06        -1.866517e-06         1.020692e-11
+     8.129497e-07         8.129543e-07        -4.570998e-12
+     1.926770e-06         1.926796e-06        -2.595548e-11
+     5.507594e-07         5.508231e-07        -6.367125e-11
+     2.261480e-06         2.261496e-06        -1.638406e-11
+    -1.871392e-07        -1.871356e-07        -3.609141e-12
+    -1.960432e-06        -1.960405e-06        -2.672284e-11
+    -3.105960e-07        -3.105795e-07        -1.644843e-11
+              ...                  ...                  ...
 
 <span class="ansi-bold"> Largest differences:
-</span>    -2.654448e-10         2.330784e-10 
+</span>    -2.654448e-10         2.330784e-10
 </pre>
 </div>
 </div>
@@ -12412,13 +12424,13 @@ $$
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">update!</span><span class="p">(</span><span class="n">Y</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">Yμ</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">∇Y</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> 
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">update!</span><span class="p">(</span><span class="n">Y</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">Yμ</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">∇Y</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span>
                  <span class="n">Yg</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">μ</span><span class="o">::</span><span class="n">F</span><span class="p">,</span> <span class="n">η</span><span class="o">::</span><span class="n">F</span><span class="p">,</span> <span class="n">min_gain</span><span class="o">::</span><span class="n">F</span><span class="p">)</span> <span class="n">where</span> <span class="p">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-        
+
         <span class="c"># Update gains - adaptive learning params</span>
         <span class="n">∇Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Yμ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">Yg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">Yg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">min_gain</span><span class="p">)</span> <span class="o">:</span> <span class="n">Yg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">0.2</span>
-        
+
         <span class="c"># Momentum gradient descent update with adaptive learning</span>
         <span class="n">Yμ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">μ</span> <span class="o">*</span> <span class="n">Yμ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">η</span> <span class="o">*</span> <span class="n">Yg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">∇Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Yμ</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -12498,17 +12510,17 @@ $$
 <span class="s">- `num_iter::T = 1000`: Number of iterations</span>
 <span class="s">- `show_every::T = 100`: Display progress at intervals of this number of iterations</span>
 <span class="s">&quot;&quot;&quot;</span>
-<span class="k">function</span> <span class="n">tsne</span><span class="p">(</span><span class="n">X</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">d</span><span class="o">::</span><span class="n">T</span><span class="p">;</span> 
+<span class="k">function</span> <span class="n">tsne</span><span class="p">(</span><span class="n">X</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="p">{</span><span class="n">F</span><span class="p">},</span> <span class="n">d</span><span class="o">::</span><span class="n">T</span><span class="p">;</span>
               <span class="n">perplexity</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span> <span class="n">perplexity_tol</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="n">perplexity_max_iter</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
-              <span class="n">pca_init</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">pca_dims</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> 
-              <span class="n">exag</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">12.0</span><span class="p">,</span> <span class="n">stop_exag</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span> 
-              <span class="n">μ_init</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">μ_final</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">μ_switch</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span> 
-              <span class="n">η</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">min_gain</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">num_iter</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> 
+              <span class="n">pca_init</span><span class="o">::</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">pca_dims</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+              <span class="n">exag</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">12.0</span><span class="p">,</span> <span class="n">stop_exag</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+              <span class="n">μ_init</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">μ_final</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">μ_switch</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+              <span class="n">η</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">min_gain</span><span class="o">::</span><span class="n">F</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">num_iter</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
               <span class="n">show_every</span><span class="o">::</span><span class="n">T</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="n">where</span> <span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Integer</span><span class="p">,</span> <span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="p">}</span>
-    
+
     <span class="c"># Number of observations</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    
+
     <span class="c"># Run PCA</span>
     <span class="k">if</span> <span class="n">pca_init</span>
         <span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">())</span>
@@ -12516,14 +12528,14 @@ $$
         <span class="n">X</span><span class="p">,</span> <span class="n">pvar</span> <span class="o">=</span> <span class="n">pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pca_dims</span><span class="p">)</span>
         <span class="nd">@printf</span><span class="p">(</span><span class="s">&quot; completed ... percentage of variance retained = </span><span class="si">%.1f%%</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pvar</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
     <span class="k">end</span>
-    
+
     <span class="c"># Create P Matrix</span>
     <span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">())</span>
     <span class="nd">@printf</span><span class="p">(</span><span class="s">&quot; Computing high dimension joint probabilities ...&quot;</span><span class="p">)</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">create_P</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">perplexity</span><span class="p">,</span> <span class="n">perplexity_tol</span><span class="p">,</span> <span class="n">perplexity_max_iter</span><span class="p">)</span>
     <span class="nd">@printf</span><span class="p">(</span><span class="s">&quot; completed</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">)</span>
     <span class="n">scale!</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">exag</span><span class="p">)</span>             <span class="c"># early exaggeration</span>
-    
+
     <span class="c"># Initialise matrices</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-4</span>   <span class="c"># low dimension map - initialise by sampling from Normal(0, 1e-4)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>          <span class="c"># sum(abs2, Y, 1)</span>
@@ -12531,23 +12543,23 @@ $$
     <span class="n">∇Y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>         <span class="c"># gradient of Y</span>
     <span class="n">Yμ</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>         <span class="c"># velocity of Y - momentum gradient descent</span>
     <span class="n">Yg</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>          <span class="c"># gains of Y - adaptive learning rate params</span>
-    
+
     <span class="c"># Initial momentum</span>
     <span class="n">μ</span> <span class="o">=</span> <span class="n">μ_init</span>
-    
+
     <span class="c"># Gradient descent updates</span>
     <span class="n">println</span><span class="p">(</span><span class="s">&quot;Running gradient descent updates ...&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">num_iter</span>
 
         <span class="c"># Calculate Q probabilities</span>
         <span class="n">sumQ</span> <span class="o">=</span> <span class="n">joint_q!</span><span class="p">(</span><span class="n">Qtop</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-        
+
         <span class="c"># Calculate gradients</span>
         <span class="n">grad!</span><span class="p">(</span><span class="n">∇Y</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Qtop</span><span class="p">,</span> <span class="n">sumQ</span><span class="p">)</span>
-        
+
         <span class="c"># Update Y</span>
         <span class="n">update!</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">Yμ</span><span class="p">,</span> <span class="n">∇Y</span><span class="p">,</span> <span class="n">Yg</span><span class="p">,</span> <span class="n">μ</span><span class="p">,</span> <span class="n">η</span><span class="p">,</span> <span class="n">min_gain</span><span class="p">)</span>
-        
+
         <span class="c"># Show progress</span>
         <span class="k">if</span> <span class="n">mod</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span> <span class="n">show_every</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="c"># print progress</span>
@@ -12555,17 +12567,17 @@ $$
             <span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">())</span>
             <span class="nd">@printf</span><span class="p">(</span><span class="s">&quot; Iteration </span><span class="si">%d</span><span class="s">: cost = </span><span class="si">%.5f</span><span class="s">, gradient norm = </span><span class="si">%.5f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">iter</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">norm</span><span class="p">(</span><span class="n">∇Y</span><span class="p">))</span>
         <span class="k">end</span>
-        
+
         <span class="c"># Change momentum param after μ_switch iterations</span>
         <span class="n">iter</span> <span class="o">==</span> <span class="n">μ_switch</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">μ</span> <span class="o">=</span> <span class="n">μ_final</span><span class="p">)</span>
-        
+
         <span class="c"># Stop exaggeration</span>
         <span class="k">if</span> <span class="n">iter</span> <span class="o">==</span> <span class="n">stop_exag</span>
             <span class="n">scale!</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">exag</span><span class="p">))</span>
             <span class="n">exag</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">end</span>
     <span class="k">end</span>
-    
+
     <span class="c"># Completed results</span>
     <span class="k">return</span> <span class="n">Y</span>
 <span class="k">end</span><span class="p">;</span>
@@ -12612,9 +12624,9 @@ $$
 
 <div class="output_markdown rendered_html output_subarea output_execute_result">
 
-<pre><code>tsne(X, d, [perplexity = 30.0, perplexity_tol = 1e-5, perplexity_max_iter = 50, 
-            pca_init = true, pca_dims = 30, exag = 12.0, stop_exag = 250, 
-            μ_init = 0.5, μ_final = 0.8, μ_switch = 250, 
+<pre><code>tsne(X, d, [perplexity = 30.0, perplexity_tol = 1e-5, perplexity_max_iter = 50,
+            pca_init = true, pca_dims = 30, exag = 12.0, stop_exag = 250,
+            μ_init = 0.5, μ_final = 0.8, μ_switch = 250,
             η = 100.0, min_gain = 0.01, num_iter = 1000])</code></pre>
 <h3 id="Input-types">Input types<a class="anchor-link" href="#Input-types">&#194;&#182;</a></h3><ul>
 <li><code>F::AbstractFloat</code></li>
@@ -12730,7 +12742,7 @@ Running gradient descent updates ...
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">palette</span> <span class="o">=</span> <span class="n">distinguishable_colors</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">Geom</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">Guide</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;y₁&quot;</span><span class="p">),</span> <span class="n">Guide</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;y₂&quot;</span><span class="p">),</span> 
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">Geom</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">Guide</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;y₁&quot;</span><span class="p">),</span> <span class="n">Guide</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;y₂&quot;</span><span class="p">),</span>
          <span class="n">Scale</span><span class="o">.</span><span class="n">color_discrete_manual</span><span class="p">(</span><span class="n">palette</span><span class="o">...</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">collect</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mi">9</span><span class="p">)),</span> <span class="n">Theme</span><span class="p">(</span><span class="n">colorkey_swatch_shape</span><span class="o">=:</span><span class="n">circle</span><span class="p">))</span>
 </pre></div>
 
@@ -50061,7 +50073,7 @@ Gadfly.plot_mousemove = function(event, x_px, y_px) {
         yoff_unit = uB[1]/1;
         mm_per_xunit = bB[2].substr(0,bB[2].length-2) / uB[2];
         mm_per_yunit = bB[3].substr(0,bB[3].length-2) / uB[3];
-         
+
         x_unit = ((x_px / px_per_mm - xtranslate) / xscale - xoff_mm) / mm_per_xunit + xoff_unit;
         y_unit = ((y_px / px_per_mm - ytranslate) / yscale - yoff_mm) / mm_per_yunit + yoff_unit;
 
@@ -50235,7 +50247,7 @@ var set_geometry_transform = function(root, tx, ty, xscale, yscale) {
                            unscale_t = new Snap.Matrix();
                            unscale_t.scale(1, 1/yscale);
                            element.select("text").transform(unscale_t);
- 
+
                            var y = element.attr("transform").globalMatrix.f / px_per_mm;
                            element.attr("visibility",
                                bounds.y0 <= y && y <= bounds.y1 ? "visible" : "hidden");
@@ -51040,7 +51052,7 @@ Running gradient descent updates ...
   </div>
 </body>
 
- 
+
 
 
 </html>
