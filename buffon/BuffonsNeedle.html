@@ -28,6 +28,66 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+/* class - wedg-header */
+.wedg-header{
+  color: #fff;
+  text-align: center;
+  background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957); /*120deg, #155799, #159957*/
+}
+
+@media screen and (min-width: 64em){
+  .wedg-header{
+    padding: 1.5rem 6rem; /*5rem 6rem*/
+  }
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em){
+  .wedg-header{
+    padding: 3rem 4rem;
+  }
+}
+
+@media screen and (max-width: 42em){
+  .wedg-header{
+    padding: 2rem 1rem;
+  }
+}
+
+/* class - homepage */
+.homepage{
+  margin-top: 0rem; /*new*/
+  margin-bottom: 2rem; /*2rem*/
+  color: rgba(255,255,255);
+  font-size: 1.8em;
+  font-weight: normal;
+  opacity:0.80; /*0.7*/
+}
+
+.homepage:hover{
+  color: rgba(179,179,255,0.8);
+  text-decoration: none;
+}
+
+@media screen and (min-width: 64em){
+  .project-tagline{
+    font-size: 1.25rem; /*1.25*/
+  }
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em){
+  .project-tagline{
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (max-width: 42em){
+  .project-tagline{
+    font-size: 1rem;
+  }
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -11780,6 +11840,12 @@ div#notebook {
     </script>
     <!-- End of mathjax configuration --></head>
 <body>
+
+  <section class="wedg-header">
+    <img src="../sacks.svg" style="width: 10%; z-index: 1; position: absolute; left:200px; top:-75px;">
+    <a href="../" class="homepage">Thick End of the Wedg</a>
+  </section>
+
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 

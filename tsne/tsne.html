@@ -13,7 +13,7 @@
 </script>
 
 <meta charset="utf-8" />
-<title>t-SNE Detail</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>t-SNE</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -28,6 +28,66 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+/* class - wedg-header */
+.wedg-header{
+  color: #fff;
+  text-align: center;
+  background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957); /*120deg, #155799, #159957*/
+}
+
+@media screen and (min-width: 64em){
+  .wedg-header{
+    padding: 1.5rem 6rem; /*5rem 6rem*/
+  }
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em){
+  .wedg-header{
+    padding: 3rem 4rem;
+  }
+}
+
+@media screen and (max-width: 42em){
+  .wedg-header{
+    padding: 2rem 1rem;
+  }
+}
+
+/* class - homepage */
+.homepage{
+  margin-top: 0rem; /*new*/
+  margin-bottom: 2rem; /*2rem*/
+  color: rgba(255,255,255);
+  font-size: 1.8em;
+  font-weight: normal;
+  opacity:0.80; /*0.7*/
+}
+
+.homepage:hover{
+  color: rgba(179,179,255,0.8);
+  text-decoration: none;
+}
+
+@media screen and (min-width: 64em){
+  .project-tagline{
+    font-size: 1.25rem; /*1.25*/
+  }
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em){
+  .project-tagline{
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (max-width: 42em){
+  .project-tagline{
+    font-size: 1rem;
+  }
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -11780,6 +11840,12 @@ div#notebook {
     </script>
     <!-- End of mathjax configuration --></head>
 <body>
+
+  <section class="wedg-header">
+    <img src="../sacks.svg" style="width: 10%; z-index: 1; position: absolute; left:200px; top:-75px;">
+    <a href="../" class="homepage">Thick End of the Wedg</a>
+  </section>
+
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
@@ -11789,7 +11855,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="t-SNE">t-SNE<a class="anchor-link" href="#t-SNE">&#194;&#182;</a></h1><p>The aim of this page is to provide a detailed description of the t-SNE algorithm alongside the implementation code which hopefully aids the understanding. The main sources used have been:</p>
 <ul>
-<li><a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">the original paper</a></li>
+<li><a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">the original paper</a> by van der Maaten and Hinton</li>
 <li><a href="https://github.com/lejon/TSne.jl">this Julia implementation</a> by Leif Jonsson</li>
 </ul>
 <p>This is also available as a julia package and can be found at (<a href="https://github.com/Wedg/TSNE.jl">https://github.com/Wedg/TSNE.jl</a>)</p>
@@ -11911,13 +11977,11 @@ H(P_j) = - \sum_j p_{i \mid j} \log_2 p_{i \mid j}
 $$</p>
 <p>A binary search is used to find the $\sigma_j$ that corresponds to the specified perplexity. This is done in the <code>conditional_p</code> function below.</p>
 <p>With $\beta_j \equiv \frac{1}{2 \sigma_j^2}$ and $D_{ij} = \|x_i - x_j\|^2$ as well as some pencil, paper and a little head scratching you can confirm that<br>
-$$
-H_j = - \sum<em>j p</em>{i \mid j} \log<em>2 p</em>{i \mid j}
-    = \left( \frac{\beta_j \sum<em>i D</em>{ij} \, \exp(- \beta<em>j  \, D</em>{ij})}{\sum_{k \neq j} \exp(- \beta<em>j  \, D</em>{kj})}</p>
-
-<pre><code>  + \log \left( \textstyle \sum_{k \neq j} \exp(- \beta_j  \, D_{kj} \right) \right) \, \frac{1}{\log(2)}
-</code></pre>
-<p>$$</p>
+<p>$$
+H_j = - \sum_j p_{i \mid j} \log_2 p_{i \mid j}
+    = \left( \frac{\beta_j \sum_i D_{ij} \, \exp(- \beta_j  \, D_{ij})}{\sum_{k \neq j} \exp(- \beta_j  \, D_{kj})}
+      + \log \left( \textstyle \sum_{k \neq j} \exp(- \beta_j  \, D_{kj} \right) \right) \, \frac{1}{\log(2)}
+$$</p>
 <p>This makes it possible to calculate both the vector $P_j$ and the value $H_j$ in one pass.</p>
 <p>The <strong><code>entropy_and_conditional_p!</code></strong> function calculates the entropy of the distribution around point $j$ as well as the conditional probability of each point $p_{i \mid j}$ given $D_j$ and $\beta_j$. $P_j$ is changed in-place and $H_j$ is returned.</p>
 
